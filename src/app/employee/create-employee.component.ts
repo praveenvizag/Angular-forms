@@ -21,11 +21,43 @@ export class CreateEmployeeComponent implements OnInit {
       })
 
     });
+
+
+  }
+//patch value can update what ever provided
+  loadData(): void {
+    this.employeeForm.patchValue({
+      fullName: "Praveen",
+      email: "Praveen.konchada@gmail.com",
+      skills: {
+        skillName: "java",
+        experience: "4 years",
+        profeciency: "intermediate"
+      }
+
+    });
+  }
+// set value needs all values to popultaed
+  loadDataUsingsetValue(): void {
+    this.employeeForm.setValue({
+      fullName: "Praveen",
+      email: "Praveen.konchada@gmail.com",
+      skills: {
+        skillName: "java",
+        experience: "4 years",
+        profeciency: "intermediate"
+      }
+
+    });
   }
   onSubmit(): void {
 
     console.log(this.employeeForm.get('fullName').value);
     console.log(this.employeeForm.controls.email.value);
 
+  }
+
+  resetData():void {
+    this.employeeForm = null;
   }
 }
