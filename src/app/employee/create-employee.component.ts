@@ -8,11 +8,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class CreateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
+  pattern:Boolean = true;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.employeeForm = this.fb.group({
-      fullName: ['Praveen', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      fullName: ['Praveen', [Validators.required, Validators.minLength(2), Validators.maxLength(15),Validators.pattern("[a-zA-Z ]*")
+      ]],
         email: ['praveen.konchada@gmail.com'],
         skills: this.fb.group({
           skillName: ['Java'],
@@ -21,7 +23,16 @@ export class CreateEmployeeComponent implements OnInit {
         })
 
     });
+    this.employeeForm.valueChanges.subscribe(val => {
+      console.log(val);
+      console.log(this.employeeForm);
+    // let name =  this.employeeForm.controls.fullName.value;
+    // if(name) {
+    //   this.pattern = name.matches("[a-zA-Z ]*");
+    // }
+     
 
+    })
 
   }
   //patch value can update what ever provided
@@ -61,6 +72,6 @@ export class CreateEmployeeComponent implements OnInit {
   resetData(): void {
     console.log("in reset");
     console.log("employee form " + this.employeeForm.controls.fullName.value)
-    this.employeeForm = null;
+    this.employeeForm.reset();
   }
 }
