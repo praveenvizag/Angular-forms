@@ -10,6 +10,7 @@
         <label class="col-sm-2 control-label" for="fullName">Full name</label>
         <div class="col-sm-8">
           <input id="fullName" type="text" formControlName="fullName" class="form-control">
+          <span>{{fullNameLength}}</span>
           <span class="help-block">
             <span *ngIf="employeeForm.get('fullName').touched && employeeForm.get('fullName').invalid">
               Full Name Required
